@@ -1,4 +1,5 @@
 from USA import *
+from France import *
 from Shared import *
 from time import sleep
 
@@ -7,13 +8,15 @@ class Menu:
         self.welcomeMessage()
 
     def welcomeMessage(self):
-        print("\nWelcome to the Change Making Program!")
-        print("This program will allow you to make change for any amount of money.")
-        print("You can choose which bills and coins you would like to include.")
-        print("You can also select a variety of countries (to be added in the future).")
-        print("Enter a country to get started as displayed below.\n")
+        print("""\nWelcome to the Currency Exchange Calculator.
+                 
+This tool helps you calculate precise denomination breakdowns for any monetary amount.
+Select your country and customize which denominations to include in the calculation.
+Multiple international currencies are supported, with regular updates.
 
-        for i, country in enumerate(countries):
+Please type the name of a country from the options below to begin.\n""")
+
+        for i, country in enumerate(sorted(countries)):
             if i < len(countries) - 1:
                 print(country + " | ", end = "")
             else:
@@ -27,6 +30,11 @@ class Menu:
                 us.includedBillsMethod()
                 us.includedCoinsMethod()
                 us.makeChange()
+            elif country == "france":
+                fr = France()
+                fr.includedBillsMethod()
+                fr.includedCoinsMethod()
+                fr.makeChange()
             else:
                 print("Invalid country entered. Goodbye.")
                 exit()
