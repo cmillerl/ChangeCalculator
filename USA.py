@@ -19,8 +19,8 @@ class USA:
             print("6. $1")
             includedBills = int(input("Enter a valid number 1-6: "))
         except ValueError:
-            print("Invalid input entered. Exiting program.")
-            exit()
+            invalidNumberHandler()
+            return self.includedBillsMethod()
             
         if includedBills == 1:
             self.bills = [(100, "Hundred Dollar Bills"), (50, "Fifty Dollar Bills"), (20, "Twenty Dollar Bills"), (10, "Ten Dollar Bills"), (5, "Five Dollar Bills"), (1, "Dollar Bills")]
@@ -35,8 +35,8 @@ class USA:
         elif includedBills == 6:
             self.bills = [(1, "Dollar Bills")]
         else:
-            print("Invalid number entered. Exiting program.")
-            exit()
+            invalidNumberHandler()
+            return self.includedBillsMethod()
 
     def includedCoinsMethod(self):
         try:
@@ -48,8 +48,8 @@ class USA:
             includedCoins = int(input("Enter a valid number 1-4: "))
 
         except ValueError:
-            print("Invalid input entered. Exiting program.")
-            exit()
+            invalidNumberHandler()
+            return self.includedCoinsMethod()
 
         if includedCoins == 1:
             self.coins = [(0.25, "Quarters"), (0.10, "Dimes"), (0.05, "Nickels"), (0.01, "Pennies")]
@@ -60,28 +60,20 @@ class USA:
         elif includedCoins == 4:
             self.coins = [(0.01, "Pennies")]
         else:
-            print("Invalid number entered. Exiting program.")
-            exit()
+            invalidNumberHandler()
+            return self.includedCoinsMethod()
 
     def makeChange(self):
         try:
             changeAmount = round(float(input("Enter the amount of change in decimal form (example 17.54): ")), 2)
             if changeAmount <= 0:
-                print("Invalid input. Would you like to try again or exit?")
-                sleep(1)
-                userOption = input("Enter 'try' or 'exit': ").lower()
-                if userOption == "try":
-                    self.makeChange()
-                elif userOption == "exit":
-                    exit()
-                else:
-                    print("Invalid input. Exiting program.")
-                    exit()
+                invalidNumberHandler()
+                return self.makeChange()
             else:
                 self.calculateChange(int(changeAmount * 100))
         except ValueError:
-            print("Invalid input. Exiting program.")
-            exit()
+            invalidNumberHandler()
+            return self.makeChange()
 
     def calculateChange(self, changeAmount):
         print("The amount of change to give is: $", changeAmount / 100)

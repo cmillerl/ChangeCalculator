@@ -35,9 +35,14 @@ Please type the name of a country from the options below to begin.\n""")
                 fr.includedBillsMethod()
                 fr.includedCoinsMethod()
                 fr.makeChange()
-            else:
-                print("Invalid country entered. Goodbye.")
+            elif country == "exit":
+                print("Exiting program.")
                 exit()
+            else:
+                print("Invalid country entered. Try again or type 'exit' to quit.")
+                sleep(3)
+                return self.welcomeMessage()
         except ValueError:
-            print("Invalid country entered. Goodbye.")
-            exit()
+                print("Invalid country entered. Try again or type 'exit' to quit.")
+                sleep(3)
+                return self.welcomeMessage()
