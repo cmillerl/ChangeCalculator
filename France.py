@@ -61,9 +61,9 @@ class France:
             return self.includedCoinsMethod()
 
         if includedCoins == 1:
-            self.coins = [(2, "Two Euros"), (1, "One Euro"), (0.50, "Cinquante Centimes"), (0.20, "Vingt Centimes"), (0.10, "Dix Centimes"), (0.05, "Cinq Centimes"), (0.02, "Deux Centimes"), (0.01, "Un Centimes")]
+            self.coins = [(2, "Two Euros"), (1, "One Euros"), (0.50, "Cinquante Centimes"), (0.20, "Vingt Centimes"), (0.10, "Dix Centimes"), (0.05, "Cinq Centimes"), (0.02, "Deux Centimes"), (0.01, "Un Centimes")]
         elif includedCoins == 2:
-            self.coins = [(1, "One Euro"), (0.50, "Cinquante Centimes"), (0.20, "Vingt Centimes"), (0.10, "Dix Centimes"), (0.05, "Cinq Centimes"), (0.02, "Deux Centimes"), (0.01, "Un Centimes")]
+            self.coins = [(1, "One Euros"), (0.50, "Cinquante Centimes"), (0.20, "Vingt Centimes"), (0.10, "Dix Centimes"), (0.05, "Cinq Centimes"), (0.02, "Deux Centimes"), (0.01, "Un Centimes")]
         elif includedCoins == 3:
             self.coins = [(0.50, "Cinquante Centimes"), (0.20, "Vingt Centimes"), (0.10, "Dix Centimes"), (0.05, "Cinq Centimes"), (0.02, "Deux Centimes"), (0.01, "Un Centimes")]
         elif includedCoins == 4:
@@ -75,14 +75,14 @@ class France:
         elif includedCoins == 7:
             self.coins = [(0.02, "Deux Centimes"), (0.01, "Un Centimes")]
         elif includedCoins == 8:
-            self.coins = [(0.01, "Un Centime")]
+            self.coins = [(0.01, "Un Centimes")]
         else:
             invalidNumberHandler()
             return self.includedCoinsMethod()
 
     def makeChange(self):
         try:
-            changeAmount = round(float(input("Enter the amount of change in decimal form (example 17.54): ")), 2)
+            changeAmount = round(float(input("Enter the amount of change in decimal form (example 17.54): €")), 2)
             if changeAmount <= 0:
                 invalidNumberHandler()
                 return self.makeChange()
@@ -93,9 +93,10 @@ class France:
             return self.makeChange()
 
     def calculateChange(self, changeAmount):
-        print("The amount of change to give is: €", changeAmount / 100)
-        print("The bills and coins to give are")
-        print("_______________________________")
+        changeAmountString = (changeAmount / 100)
+        print(f"\nThe amount of change to give is: €{changeAmountString}")
+        print("\nThe bills and coins to give are")
+        print("-------------------------------")
         for value, name in self.bills + self.coins:
             value = int(value * 100)
             count, changeAmount = divmod(changeAmount, value)

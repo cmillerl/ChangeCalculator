@@ -65,7 +65,7 @@ class USA:
 
     def makeChange(self):
         try:
-            changeAmount = round(float(input("Enter the amount of change in decimal form (example 17.54): ")), 2)
+            changeAmount = round(float(input("Enter the amount of change in decimal form (example 17.54): $")), 2)
             if changeAmount <= 0:
                 invalidNumberHandler()
                 return self.makeChange()
@@ -76,9 +76,10 @@ class USA:
             return self.makeChange()
 
     def calculateChange(self, changeAmount):
-        print("The amount of change to give is: $", changeAmount / 100)
-        print("The bills and coins to give are")
-        print("_______________________________")
+        changeAmountString = (changeAmount / 100)
+        print(f"\nThe amount of change to give is: ${changeAmountString}")
+        print("\nThe bills and coins to give are")
+        print("-------------------------------")
         for value, name in self.bills + self.coins:
             value = int(value * 100)
             count, changeAmount = divmod(changeAmount, value)

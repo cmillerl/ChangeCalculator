@@ -14,7 +14,7 @@ This tool helps you calculate precise denomination breakdowns for any monetary a
 Select your country and customize which denominations to include in the calculation.
 Multiple international currencies are supported, with regular updates.
 
-Please type the name of a country from the options below to begin.\n""")
+Please type the name of a country from the options below to begin. If you want to exit, type 'exit'.\n""")
 
         for i, country in enumerate(sorted(countries)):
             if i < len(countries) - 1:
