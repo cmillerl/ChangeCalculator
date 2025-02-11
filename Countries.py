@@ -13,5 +13,8 @@ class Countries:
                           "GREECE", "LATVIA", "LITHUANIA", "LUXEMBOURG", "MALTA", "NETHERLANDS", 
                           "SLOVAKIA", "SLOVENIA", "CROATIA"}
         
+        self.yenCountries = {"JAPAN"}
+
         self.countries.update(self.usdCountries)
         self.countries.update(self.euroCountries)
+        self.countries.update(self.yenCountries)

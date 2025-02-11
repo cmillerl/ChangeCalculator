@@ -26,8 +26,7 @@ Please type the name of a country from the options below to begin. If you want t
             country = input("Enter a country: ").upper()
             self.countrySelection(country)
         except ValueError:
-            print("Invalid country entered. Try again or type 'exit' to quit.")
-            sleep(3)
+            invalidHandler()
             self.welcomeMessage()
 
     def countrySelection(self, country):
@@ -39,43 +38,50 @@ Please type the name of a country from the options below to begin. If you want t
 
         usdCountries = self.countryClass.usdCountries
         euroCountries = self.countryClass.euroCountries
+        yenCountries = self.countryClass.yenCountries
     
-        if country in self.countryClass.countries:
+        if country.lower() == "exit":
+            print("Exiting program...")
+            exit()
+        elif country in self.countryClass.countries:
             if country in usdCountries:
-                symbol = self.currencyClass.usSymbol
-                bills = self.currencyClass.usBills
-                coins = self.currencyClass.usCoins
+                symbol = self.currencyClass.usdSymbol
+                bills = self.currencyClass.usdBills
+                coins = self.currencyClass.usdCoins
             elif country in euroCountries:
                 symbol = self.currencyClass.euroSymbol
                 bills = self.currencyClass.euroBills
                 coins = self.currencyClass.euroCoins
+            elif country in yenCountries:
+                symbol = self.currencyClass.yenSymbol
+                bills = self.currencyClass.yenBills
+                coins = self.currencyClass.yenCoins
         
             selectedBills, selectedCoins = self.promptBillsCoins(bills, coins)
             converter = CurrencyConverter(symbol, selectedBills, selectedCoins)
             converter.makeChange()
-
-        elif country.lower() == "exit":
-            print("Exiting program.")
-            exit()
         else:
-            print("Invalid country entered. Try again or type 'exit' to quit.")
-            sleep(3)
+            invalidHandler()
             self.welcomeMessage()
 
     def promptBillsCoins(self, bills, coins):
-        print("\nYou can choose which bills and coins to include in the change calculation.")
-        print("Type 'all' to include everything, or type specific bill/coin names separated by commas.")
-        sleep(3)
+        print("\nYou can choose which bills and coins to include in the change calculation.\n")
+        print("Enter your selection separated by commas or all to include everything.")
+        sleep(5)
 
-        print("\nAvailable Bills:")
-        for bill in bills.keys():
-            print(f"- {bill}")
+        print("\nAvailable Bills")
+        print("---------------")
+        sortedBills = sorted(bills.items(), key = lambda x: float(x[1]), reverse = True)
+        for name, value in sortedBills:
+            print(f"- {value}")
 
-        print("\nAvailable Coins:")
-        for coin in coins.keys():
-            print(f"- {coin}")
+        print("\nAvailable Coins")
+        print("---------------")
+        sortedCoins = sorted(coins.items(), key = lambda x: float(x[1]), reverse = True)
+        for name, value in sortedCoins:
+            print(f" - {value}")
 
-        userInput = input("\nEnter your selection separated by commas or 'all' to include everything: ").strip().lower()
+        userInput = input("\nEnter your selection separated by commas or all to include everything: ").strip().lower()
 
         if userInput == "all":
             return bills, coins
@@ -83,18 +89,22 @@ Please type the name of a country from the options below to begin. If you want t
         selectedBills = {}
         selectedCoins = {}
 
-        selectedItems = [item.strip().title() for item in userInput.split(",")]
+        try:
+            selectedItems = [float(item.strip().replace("$", "")) for item in userInput.split(",")]
 
-        for bill in bills:
-            if bill.title() in selectedItems:
-                selectedBills[bill] = bills[bill]
+            for name, value in bills.items():
+                if value in selectedItems:
+                    selectedBills[name] = value 
 
-        for coin in coins:
-            if coin.title() in selectedItems:
-                selectedCoins[coin] = coins[coin]
+            for name, value in coins.items():
+                if value in selectedItems:
+                    selectedCoins[name] = value
 
-        if not selectedBills and not selectedCoins:
-            print("No valid selections made. All bills and coins will be included.")
-            return bills, coins
+            if not selectedBills and not selectedCoins:
+                print("No valid selections made. All bills and coins will be included.")
+                return bills, coins
 
-        return selectedBills, selectedCoins
+            return selectedBills, selectedCoins
+        except ValueError:
+            invalidHandler()
+            return self.promptBillsCoins(bills, coins)

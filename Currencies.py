@@ -1,19 +1,19 @@
 class Currencies:
     def __init__(self):
 
-        self.usBills = {"One Hundred Dollars": 100,
+        self.usdBills = {"One Hundred Dollars": 100,
                         "Fifty Dollars": 50, 
                         "Twenty Dollars": 20, 
                         "Ten Dollars": 10, 
                         "Five Dollars": 5, 
                         "Dollars": 1}
         
-        self.usCoins = {"Quarters": 0.25, 
+        self.usdCoins = {"Quarters": 0.25, 
                         "Dimes": 0.10, 
                         "Nickels": 0.05, 
                         "Pennies": 0.01}
         
-        self.usSymbol = "$"
+        self.usdSymbol = "$"
 
         self.euroBills = {"Five Hundred Euros": 500, 
                           "Two Hundred Euros": 200, 
@@ -33,3 +33,17 @@ class Currencies:
                           "One Euro Cents": 0.01}
         
         self.euroSymbol = "€"
+
+        self.yenBills = {"Ten Thousand Yen Notes": 10000,
+                         "Five Thousand Yen Notes": 5000,
+                         "Two Thousand Yen Notes": 2000,
+                         "One Thousand Yen Notes": 1000,}
+        
+        self.yenCoins = {"Five Hundred Yen Bicolor Clad Coins": 500,
+                         "Hundred Yen Cupro-Nickel Coins": 100,
+                         "Fifty Yen Cupro-Nickel Coins": 50,
+                         "Ten Yen Bronze Coins": 10,
+                         "Five Yen Brass Coins": 5,
+                         "One Yen Aluminum Coins": 1}
+        
+        self.yenSymbol = "¥"

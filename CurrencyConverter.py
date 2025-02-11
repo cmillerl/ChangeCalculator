@@ -11,14 +11,14 @@ class CurrencyConverter:
 
     def makeChange(self):
         try:
-            changeAmount = round(float(input(f"Enter the amount of change in decimal form (example 17.54): {self.symbol}")), 2)
+            changeAmount = round(float(input(f"\nEnter the amount of change in decimal form: {self.symbol}")), 2)
             if changeAmount <= 0:
-                invalidNumberHandler()
+                invalidHandler()
                 return self.makeChange()
             else:
                 self.calculateChange(int(changeAmount * 100))
         except ValueError:
-            invalidNumberHandler()
+            invalidHandler()
             return self.makeChange()
         
     def calculateChange(self, changeAmount):
