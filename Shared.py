@@ -1,6 +1,6 @@
+from Countries import *
+from Currencies import *
 from time import sleep
-
-countries = []
 
 def invalidNumberHandler():
     print("Invalid number. Try again.")

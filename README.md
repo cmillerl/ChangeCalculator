@@ -1,7 +1,5 @@
 # Change Calculator
 
-## This program will eventually include different countries to calculate the optimal way to give change in bills and coins.
-
 ### How To Use:
 
 1. Execute `Main.py`.
