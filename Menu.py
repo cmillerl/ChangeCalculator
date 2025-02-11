@@ -37,10 +37,11 @@ Please type the name of a country from the options below to begin. If you want t
         bills = {}
         coins = {}
 
+        usdCountries = self.countryClass.usdCountries
         euroCountries = self.countryClass.euroCountries
     
         if country in self.countryClass.countries:
-            if country == "USA":
+            if country in usdCountries:
                 symbol = self.currencyClass.usSymbol
                 bills = self.currencyClass.usBills
                 coins = self.currencyClass.usCoins
