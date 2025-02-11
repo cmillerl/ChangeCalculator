@@ -37,10 +37,7 @@ Please type the name of a country from the options below to begin. If you want t
         bills = {}
         coins = {}
 
-        euroCountries = {"FRANCE", "GERMANY", "ITALY", "PORTUGAL", "SPAIN", 
-                          "IRELAND", "AUSTRIA", "BELGIUM", "CYPRUS", "ESTONIA", "FINLAND", 
-                          "GREECE", "LATVIA", "LITHUANIA", "LUXEMBOURG", "MALTA", "NETHERLANDS", 
-                          "SLOVAKIA", "SLOVENIA", "CROATIA"}
+        euroCountries = self.countryClass.euroCountries
     
         if country in self.countryClass.countries:
             if country == "USA":
