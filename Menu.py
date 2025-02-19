@@ -56,6 +56,7 @@ Please type the name of a country from the options below to begin. If you want t
         usdCountries = self.countryClass.usdCountries
         euroCountries = self.countryClass.euroCountries
         yenCountries = self.countryClass.yenCountries
+        gbpCountries = self.countryClass.gbpCountries
     
         if country.lower() == "exit":
             print("Exiting program...")
@@ -73,6 +74,10 @@ Please type the name of a country from the options below to begin. If you want t
                 symbol = self.currencyClass.yenSymbol
                 bills = self.currencyClass.yenBills
                 coins = self.currencyClass.yenCoins
+            elif country in gbpCountries:
+                symbol = self.currencyClass.gbpSymbol
+                bills = self.currencyClass.gbpBills
+                coins = self.currencyClass.gbpCoins
         
             selectedBills, selectedCoins = self.promptBillsCoins(bills, coins)
             converter = CurrencyConverter(symbol, selectedBills, selectedCoins)

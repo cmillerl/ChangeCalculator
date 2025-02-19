@@ -47,3 +47,20 @@ class Currencies:
                          "One Yen Aluminum Coins": 1}
         
         self.yenSymbol = "¥"
+
+        self.gbpBills = {"One Hundred Pounds": 100,
+                        "Fifty Pounds": 50,
+                        "Twenty Pounds": 20,
+                        "Ten Pounds": 10,
+                        "Five Pounds": 5,
+                        "One Pounds": 1}
+        
+        self.gbpCoins = {"Two Pounds": 2,
+                        "Fifty Pences": 0.50,
+                        "Twenty Pences": 0.20,
+                        "Ten Pences": 0.10,
+                        "Five Pences": 0.05,
+                        "Two Pences": 0.02,
+                        "One Pences": 0.01}
+        
+        self.gbpSymbol = "£"

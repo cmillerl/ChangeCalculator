@@ -15,7 +15,13 @@ class Countries:
         
         self.yenCountries = {"JAPAN"}
 
+        self.gbpCountries = {"UK", "BRITISH ANTARCTIC TERRITORY", "BRITISH INDIAN OCEAN TERRITORY", "EGYPT",
+                            "FALKLAND ISLANDS", "GIBRALTAR", "GUERNSEY", "ISLE OF MAN", "JERSEY", 
+                            "LEBANON", "SAINT HELENA", "ASCENSION", "SOUTH GEORGIA", "SOUTH SANDWICH ISLANDS",
+                            "SOUTH SUDAN", "SUDAN", "SYRIA", "TRISTAN DA CUNHA"}
+
         #Adds all countries to the set.
         self.countries.update(self.usdCountries)
         self.countries.update(self.euroCountries)
         self.countries.update(self.yenCountries)
+        self.countries.update(self.gbpCountries)
