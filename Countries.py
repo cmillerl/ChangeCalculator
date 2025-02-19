@@ -1,7 +1,7 @@
 class Countries:
     def __init__(self):
         
-        self.countries = {"EXIT"}
+        self.countries = set()
 
         self.usdCountries = {"USA", "PUERTO RICO", "GUAM", "AMERICAN SAMOA", "NORTHERN MARIANA ISLANDS", 
                              "VIRGIN ISLANDS", "TURKS AND CAICOS", "BRITISH VIRGIN ISLANDS", "ECUADOR", 
@@ -15,6 +15,7 @@ class Countries:
         
         self.yenCountries = {"JAPAN"}
 
+        #Adds all countries to the set.
         self.countries.update(self.usdCountries)
         self.countries.update(self.euroCountries)
         self.countries.update(self.yenCountries)

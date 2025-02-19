@@ -10,18 +10,31 @@ class CurrencyConverter:
         self.coins = coins
 
     def makeChange(self):
+        """
+        Prompts the user to enter the amount of change to give in decimal form.
+
+        If the input is invalid or less than or equal to zero, the user is prompted to try again.
+
+        Calls the calculateChange method with the change amount in cents rounded to two decimal places * 100.
+        """
         try:
             changeAmount = round(float(input(f"\nEnter the amount of change in decimal form: {self.symbol}")), 2)
             if changeAmount <= 0:
-                invalidHandler()
+                invalidInputHandler()
                 return self.makeChange()
             else:
                 self.calculateChange(int(changeAmount * 100))
         except ValueError:
-            invalidHandler()
+            invalidInputHandler()
             return self.makeChange()
         
     def calculateChange(self, changeAmount):
+        """
+        Calculates the change to give in bills and coins based on the selected currencies.
+        
+        Starts with the highest denomination and works down to the lowest denomination.
+        """
+
         changeAmountString = f"{changeAmount / 100:.2f}"
         print(f"\nThe amount of change to give is: {self.symbol}{changeAmountString}")
         print("\nThe bills and coins to give are")

@@ -19,17 +19,34 @@ Multiple international currencies are supported, with regular updates.
 Please type the name of a country from the options below to begin. If you want to exit, type 'exit'.\n""")
         
         countries = sorted(self.countryClass.countries)
-        print("\n".join(country.upper() if country == "USA" else country.title() for country in countries), end="")
+        #Sorts the countries alphabetically before iterating through the set.
+        for i, country in enumerate(countries):
+            formattedCountries = country.upper() if country == "USA" else country.title()
+            if i % 10 == 0 and i != 0:
+                print("\n")
+                print(formattedCountries, end="")
+            elif i == 0:
+                print(formattedCountries, end="")
+            else:
+                print(f" | {formattedCountries}", end="")
 
         try:
             print("\n")
             country = input("Enter a country: ").upper()
             self.countrySelection(country)
         except ValueError:
-            invalidHandler()
+            invalidInputHandler()
             self.welcomeMessage()
 
     def countrySelection(self, country):
+        """
+        If the country is in the set of countries, the currency symbol, bills, and coins are assigned based on the country.
+
+        Promps the user to select which bills and coins to include in the change calculation with the promptBillsCoins method.
+
+        If the country is not in the set of countries, the user is prompted to try again or exit the program.
+        """
+
         country = country.upper()
 
         symbol = None
@@ -61,10 +78,19 @@ Please type the name of a country from the options below to begin. If you want t
             converter = CurrencyConverter(symbol, selectedBills, selectedCoins)
             converter.makeChange()
         else:
-            invalidHandler()
+            invalidInputHandler()
             self.welcomeMessage()
 
     def promptBillsCoins(self, bills, coins):
+        """
+        Prompts the user to select which bills and coins to include in the change calculation.
+
+        If the user enters all or makes an invalid selection, all bills and coins are included.
+
+        Parses the user input and adds the selected bills and coins to a dictionary.
+
+        """
+
         print("\nYou can choose which bills and coins to include in the change calculation.\n")
         print("Enter your selection separated by commas or all to include everything.")
         sleep(5)
@@ -106,5 +132,5 @@ Please type the name of a country from the options below to begin. If you want t
 
             return selectedBills, selectedCoins
         except ValueError:
-            invalidHandler()
+            invalidInputHandler()
             return self.promptBillsCoins(bills, coins)
