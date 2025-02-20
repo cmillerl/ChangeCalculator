@@ -1,9 +1,9 @@
-from Menu import *
+from ui import *
 
 
 class Main:
     def __init__(self):
-        self.menu = Menu()
+        self.menu = UserInterface()
 
 
 if __name__ == "__main__":

@@ -1,13 +1,13 @@
-from Countries import *
-from Currencies import *
-from CurrencyConverter import *
+from countries import *
+from currencies import *
+from calculators import *
 from time import sleep
 
 
-class Menu:
+class UserInterface:
     def __init__(self):
-        self.countryClass = Countries()
-        self.currencyClass = Currencies()
+        self.calc = Calculators()
+        self.calc.ui = self
         self.welcomeMessage()
 
     def welcomeMessage(self):
@@ -21,12 +21,10 @@ Multiple international currencies are supported, with regular updates.
 Please type the name of a country from the options below to begin. If you want to exit, type 'exit'.\n"""
         )
 
-        countries = sorted(self.countryClass.countries)
+        countries = sorted(self.calc.countryClass.countries)
         # Sorts the countries alphabetically before iterating through the set.
         for i, country in enumerate(countries):
-            formattedCountries = (
-                country.upper() if country == "USA" else country.title()
-            )
+            formattedCountries = (country.upper() if country == "USA" else country.title())  # fmt: skip
             if i % 10 == 0 and i != 0:
                 print("\n")
                 print(formattedCountries, end="")
@@ -37,57 +35,9 @@ Please type the name of a country from the options below to begin. If you want t
 
         try:
             print("\n")
-            country = input("Enter a country: ").upper()
-            self.countrySelection(country)
+            country = input("Enter a country: ").upper().strip()
+            self.calc.countrySelection(country)
         except ValueError:
-            invalidInputHandler()
-            self.welcomeMessage()
-
-    def countrySelection(self, country):
-        """
-        If the country is in the set of countries, the currency symbol, bills, and coins are assigned based on the country.
-
-        Promps the user to select which bills and coins to include in the change calculation with the promptBillsCoins method.
-
-        If the country is not in the set of countries, the user is prompted to try again or exit the program.
-        """
-
-        country = country.upper()
-
-        symbol = None
-        bills = {}
-        coins = {}
-
-        usdCountries = self.countryClass.usdCountries
-        euroCountries = self.countryClass.euroCountries
-        yenCountries = self.countryClass.yenCountries
-        gbpCountries = self.countryClass.gbpCountries
-
-        if country.lower() == "exit":
-            print("Exiting program...")
-            exit()
-        elif country in self.countryClass.countries:
-            if country in usdCountries:
-                symbol = self.currencyClass.usdSymbol
-                bills = self.currencyClass.usdBills
-                coins = self.currencyClass.usdCoins
-            elif country in euroCountries:
-                symbol = self.currencyClass.euroSymbol
-                bills = self.currencyClass.euroBills
-                coins = self.currencyClass.euroCoins
-            elif country in yenCountries:
-                symbol = self.currencyClass.yenSymbol
-                bills = self.currencyClass.yenBills
-                coins = self.currencyClass.yenCoins
-            elif country in gbpCountries:
-                symbol = self.currencyClass.gbpSymbol
-                bills = self.currencyClass.gbpBills
-                coins = self.currencyClass.gbpCoins
-
-            selectedBills, selectedCoins = self.promptBillsCoins(bills, coins)
-            converter = CurrencyConverter(symbol, selectedBills, selectedCoins)
-            converter.makeChange()
-        else:
             invalidInputHandler()
             self.welcomeMessage()
 
@@ -147,3 +97,22 @@ Please type the name of a country from the options below to begin. If you want t
         except ValueError:
             invalidInputHandler()
             return self.promptBillsCoins(bills, coins)
+
+    def promptChangeAmount(self):
+        """
+        Prompts the user to enter the amount of change to give in decimal form.
+
+        If the input is invalid or less than or equal to zero, the user is prompted to try again.
+
+        Calls the calculateChange method with the change amount in cents rounded to two decimal places * 100.
+        """
+        try:
+            changeAmount = round(float(input(f"\nEnter the amount of change in decimal form: {self.calc.symbol}")), 2)  # fmt: skip
+            if changeAmount <= 0:
+                invalidInputHandler()
+                return self.promptChangeAmount()
+            else:
+                self.calc.calculateChange(int(changeAmount * 100))
+        except ValueError:
+            invalidInputHandler()
+            return self.promptChangeAmount()
