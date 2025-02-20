@@ -4,10 +4,11 @@ from time import sleep
 import logging
 
 logging.basicConfig(
-    level = logging.INFO,
-    format = '%(levelname)s - %(message)s',
-    handlers = [logging.StreamHandler()]
+    level=logging.INFO,
+    format="%(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler()],
 )
+
 
 def invalidInputHandler():
     """
