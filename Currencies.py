@@ -80,3 +80,58 @@ class Currencies:
         }
 
         self.gbpSymbol = "£"
+
+        self.rmbBills = {
+            "One Hundred Yuan": 100,
+            "Fifty Yuan": 50,
+            "Twenty Yuan": 20,
+            "Ten Yuan": 10,
+            "Five Yuan": 5,
+            "One Yuan": 1,
+        }
+
+        self.rmbCoins = {
+            "Five Jiao": 0.50,
+            "One Jiao": 0.10,
+            "Five Fen": 0.05,
+            "One Fen": 0.01,
+        }
+
+        self.rmbSymbol = "¥"
+
+        self.audBills = {
+            "One Hundred Australian Dollars": 100,
+            "Fifty Australian Dollars": 50,
+            "Twenty Australian Dollars": 20,
+            "Ten Australian Dollars": 10,
+            "Five Australian Dollars": 5,
+        }
+
+        self.audCoins = {
+            "Two Australian Dollar Coins": 2,
+            "One Australian Dollar Coins": 1,
+            "Fifty Australian Cent Coins": 0.50,
+            "Twenty Australian Cent Coins": 0.20,
+            "Ten Australian Cent Coins": 0.10,
+            "Five Australian Cent Coins": 0.05,
+        }
+
+        self.audSymbol = "AU$"
+
+        self.cadBills = {
+            "One Hundred Canadian Dollars": 100,
+            "Fifty Canadian Dollars": 50,
+            "Twenty Canadian Dollars": 20,
+            "Ten Canadian Dollars": 10,
+            "Five Canadian Dollars": 5,
+        }
+
+        self.cadCoins = {
+            "Two Canadian Dollar Coins": 2,
+            "One Canadian Dollar Coins": 1,
+            "Twenty Five Canadian Cent Coins": 0.25,
+            "Ten Canadian Cent Coins": 0.10,
+            "Five Canadian Cent Coins": 0.05,
+        }
+
+        self.cadSymbol = "CA$"

@@ -69,8 +69,29 @@ class Countries:
             "UK",
         }
 
+        self.rmbCountries = {"CHINA"}
+
+        self.audCountries = {
+            "ASHMORE AND CARTIER ISLANDS",
+            "AUSTRALIA",
+            "AUSTRALIAN ANTARCTIC TERRITORY",
+            "CHRISTMAS ISLAND",
+            "COCOS ISLANDS",
+            "CORAL SEA ISLANDS",
+            "HEARD ISLAND",
+            "KIRIBATI",
+            "MCDONALD ISLANDS",
+            "NAURU",
+            "NORFOLK ISLAND",
+        }
+
+        self.cadCountries = {"CANADA"}
+
         # Adds all countries to the set.
         self.countries.update(self.usdCountries)
         self.countries.update(self.euroCountries)
         self.countries.update(self.yenCountries)
         self.countries.update(self.gbpCountries)
+        self.countries.update(self.rmbCountries)
+        self.countries.update(self.audCountries)
+        self.countries.update(self.cadCountries)
