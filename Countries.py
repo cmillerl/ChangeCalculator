@@ -1,6 +1,8 @@
 class Countries:
     def __init__(self):
 
+        #To add: CNY, AUD, CAD, CHF, HKD, SGD, SEK, KRW, NOK, NZD, INR, MXN, TWD, ZAR
+
         self.countries = set()
 
         self.usdCountries = {

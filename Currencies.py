@@ -1,6 +1,8 @@
 class Currencies:
     def __init__(self):
 
+        self.currencies = {"USD", "EURO", "YEN", "GBP"}
+
         self.usdBills = {
             "One Hundred Dollars": 100,
             "Fifty Dollars": 50,
