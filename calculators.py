@@ -44,6 +44,9 @@ class Calculators:
         euroCountries = self.countryClass.euroCountries
         yenCountries = self.countryClass.yenCountries
         gbpCountries = self.countryClass.gbpCountries
+        rmbCountries = self.countryClass.rmbCountries
+        audCountries = self.countryClass.audCountries
+        cadCounrties = self.countryClass.cadCountries
 
         if country.lower() == "exit":
             print("Exiting program...")
@@ -69,6 +72,18 @@ class Calculators:
             self.symbol = self.currencyClass.gbpSymbol
             self.bills = self.currencyClass.gbpBills
             self.coins = self.currencyClass.gbpCoins
+        elif country in rmbCountries:
+            self.symbol = self.currencyClass.rmbSymbol
+            self.bills = self.currencyClass.rmbBills
+            self.coins = self.currencyClass.rmbCoins
+        elif country in audCountries:
+            self.symbol = self.currencyClass.audSymbol
+            self.bills = self.currencyClass.audBills
+            self.coins = self.currencyClass.audCoins
+        elif country in cadCounrties:
+            self.symbol = self.currencyClass.cadSymbol
+            self.bills = self.currencyClass.cadBills
+            self.coins = self.currencyClass.cadCoins
 
         selectedBills, selectedCoins = self.ui.promptBillsCoins(self.bills, self.coins)  # fmt: skip
         self.bills = selectedBills
@@ -119,6 +134,19 @@ class Calculators:
             self.symbol = self.currencyClass.gbpSymbol
             self.bills = self.currencyClass.gbpBills
             self.coins = self.currencyClass.gbpCoins
+        elif selectedCurrency == "RMB":
+            self.symbol = self.currencyClass.rmbSymbol
+            self.bills = self.currencyClass.rmbBills
+            self.coins = self.currencyClass.rmbCoins
+        elif selectedCurrency == "AUD":
+            self.symbol = self.currencyClass.audSymbol
+            self.bills = self.currencyClass.audBills
+            self.coins = self.currencyClass.audCoins
+        elif selectedCurrency == "CAD":
+            self.symbol = self.currencyClass.cadSymbol
+            self.bills = self.currencyClass.cadBills
+            self.coins = self.currencyClass.cadCoins
+            
 
         selectedBills, selectedCoins = self.ui.promptBillsCoins(self.bills, self.coins)  # fmt: skip
         self.bills = selectedBills
